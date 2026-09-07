@@ -1,0 +1,226 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Menu, X, Phone, Mail, ArrowUpRight } from 'lucide-react';
+import BrandLogo from './BrandLogo';
+import { COMPANY_CONFIG } from '@/lib/company-config';
+
+interface NavbarProps {
+  onOpenEnquiry?: () => void;
+}
+
+export default function Navbar({ onOpenEnquiry }: NavbarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMobileMenuOpen(false);
+  }
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
+  return (
+    <>
+      <header
+        id="main-navigation"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#0f1114]/95 backdrop-blur-md border-b border-zinc-800/80 shadow-md py-3'
+            : 'bg-[#0f1114] border-b border-zinc-800/50 py-4 sm:py-5'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-4">
+            {/* Brand Logo */}
+            <BrandLogo variant="dark" hideSubtitleOnMobile={true} />
+
+            {/* Desktop Navigation Links */}
+            <nav
+              id="desktop-nav"
+              className="hidden lg:flex items-center gap-1 xl:gap-2"
+              aria-label="Main Navigation"
+            >
+              {COMPANY_CONFIG.NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-3 py-2 text-xs xl:text-sm font-medium tracking-wider uppercase transition-colors relative ${
+                      isActive
+                        ? 'text-white font-semibold'
+                        : 'text-zinc-300 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#c89f56]" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Actions & Primary CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a
+                href={COMPANY_CONFIG.PHONE_TEL}
+                className="hidden xl:inline-flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white transition-colors"
+                title={`Call ${COMPANY_CONFIG.PHONE_DISPLAY}`}
+              >
+                <Phone className="w-3.5 h-3.5 text-[#c89f56]" />
+                <span className="tracking-wide">{COMPANY_CONFIG.PHONE}</span>
+              </a>
+
+              <Link
+                href="/contact"
+                id="nav-cta-button"
+                className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-[#c89f56] hover:bg-[#b88f46] text-[#0f1114] transition-all duration-200 shadow-xs hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-[#c89f56] focus:ring-offset-2 focus:ring-offset-[#0f1114] active:scale-[0.98]"
+              >
+                <span>Get in Touch</span>
+                <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </Link>
+            </div>
+
+            {/* Mobile Header Right: CTA + Hamburger */}
+            <div className="flex lg:hidden items-center gap-2">
+              <Link
+                href="/contact"
+                id="mobile-nav-cta-button"
+                className="inline-flex items-center justify-center px-3 py-2 min-h-[40px] text-[11px] font-semibold tracking-wider uppercase bg-[#c89f56] text-[#0f1114] active:scale-95 transition-transform"
+              >
+                <span>Get in Touch</span>
+              </Link>
+
+              <button
+                type="button"
+                id="mobile-menu-toggle"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-expanded={mobileMenuOpen}
+                aria-label={mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
+                className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#c89f56]"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" aria-hidden="true" />
+                ) : (
+                  <Menu className="w-6 h-6" aria-hidden="true" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay & Drawer */}
+      {mobileMenuOpen && (
+        <div
+          id="mobile-nav-drawer"
+          className="fixed inset-0 z-50 lg:hidden bg-[#0f1114] flex flex-col pt-20 pb-[max(2rem,env(safe-area-inset-bottom))] px-5 sm:px-6 overflow-y-auto animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+        >
+          {/* Close button in top corner */}
+          <div className="absolute top-5 right-5">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-zinc-400 hover:text-white bg-zinc-900 border border-zinc-800"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="mb-6 pb-4 border-b border-zinc-800/80">
+            <BrandLogo variant="dark" showSubtitle={true} />
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex flex-col gap-1.5 mb-8" aria-label="Mobile Links">
+            {COMPANY_CONFIG.NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-between py-3.5 px-3 min-h-[48px] text-base font-medium tracking-wide transition-colors ${
+                    isActive
+                      ? 'bg-zinc-900 text-white font-semibold border-l-2 border-[#c89f56]'
+                      : 'text-zinc-300 hover:text-white hover:bg-zinc-900/50'
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <span className="text-xs text-zinc-500">→</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Contact Details Quick Strip */}
+          <div className="mt-auto pt-6 border-t border-zinc-800/80 space-y-3">
+            <p className="text-[11px] font-semibold tracking-widest text-zinc-400 uppercase">
+              Direct Contact
+            </p>
+            <a
+              href={COMPANY_CONFIG.PHONE_TEL}
+              className="flex items-center gap-3 py-3 px-3 min-h-[48px] bg-zinc-900 border border-zinc-800 text-zinc-200 text-sm active:bg-zinc-800"
+            >
+              <Phone className="w-4 h-4 text-[#c89f56] shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-400 uppercase">Call Office</span>
+                <span className="font-mono text-xs">{COMPANY_CONFIG.PHONE}</span>
+              </div>
+            </a>
+
+            <a
+              href={COMPANY_CONFIG.EMAIL_MAILTO}
+              className="flex items-center gap-3 py-3 px-3 min-h-[48px] bg-zinc-900 border border-zinc-800 text-zinc-200 text-sm active:bg-zinc-800"
+            >
+              <Mail className="w-4 h-4 text-[#c89f56] shrink-0" />
+              <div className="flex flex-col min-w-0">
+                <span className="text-[10px] text-zinc-400 uppercase">Email Enquiries</span>
+                <span className="font-mono text-xs truncate">{COMPANY_CONFIG.EMAIL}</span>
+              </div>
+            </a>
+
+            <div className="pt-2">
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3.5 min-h-[48px] bg-[#c89f56] text-[#0f1114] text-xs font-semibold tracking-wider uppercase active:bg-[#b88f46]"
+              >
+                <span>Book a Consultation / Enquiry</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
