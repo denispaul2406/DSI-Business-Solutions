@@ -1,18 +1,16 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Navbar from '@/components/Navbar';
-import ServicesOverview from '@/components/ServicesOverview';
-import AccountantServicesSection from '@/components/AccountantServicesSection';
-import DsiEstatesSection from '@/components/DsiEstatesSection';
-import ContactCtaBanner from '@/components/ContactCtaBanner';
+import ServicesHub from '@/components/ServicesHub';
 import Footer from '@/components/Footer';
 import MobileActionPill from '@/components/MobileActionPill';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Services | Ansari & Co. & DSI Estates — Amjad Ansari, Bangalore',
+  title: 'Services | Ansari & Co. (Auditors) & DSI Estates (Real Estate) — Amjad Ansari, Bangalore',
   description:
-    'Explore services by Ansari & Co. and DSI Estates: Income Tax, GST, ROC, Statutory Compliances, Investments Planning, Financial Planning, and Builders & Developers property development in Bangalore.',
+    'Explore two specialized practice divisions: Ansari & Co. (Auditors and Tax Consultants) and DSI Estates (Builders & Developers) led by Amjad Ansari in Bangalore.',
 };
 
 export default function ServicesPage() {
@@ -30,18 +28,17 @@ export default function ServicesPage() {
               <span className="text-[#c89f56]">Services</span>
             </nav>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white mb-3">
-              Ansari & Co. & DSI Estates — Practice Disciplines
+              Services & Practice Divisions
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 max-w-2xl">
-              Income Tax, GST, ROC compliances, investments planning, financial planning, and turnkey building development led by Amjad Ansari in Bangalore.
+              Select between <span className="text-[#c89f56]">Auditing & Tax Consultation</span> (Ansari & Co.) and <span className="text-[#c89f56]">Real Estate & Building Development</span> (DSI Estates) led by Amjad Ansari in Bangalore.
             </p>
           </div>
         </div>
 
-        <ServicesOverview />
-        <AccountantServicesSection isStandalonePage={true} />
-        <DsiEstatesSection />
-        <ContactCtaBanner />
+        <Suspense fallback={<div className="py-20 text-center text-zinc-400 font-mono">Loading practice areas...</div>}>
+          <ServicesHub />
+        </Suspense>
       </main>
 
       <Footer />
@@ -49,3 +46,4 @@ export default function ServicesPage() {
     </div>
   );
 }
+

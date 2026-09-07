@@ -207,10 +207,24 @@ export const COMPANY_CONFIG = {
 
   NAV_LINKS: [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Services', href: '/services' },
-    { label: 'DSI Estates', href: '/dsi-estates' },
+    { label: 'About Us', href: '/about' },
     { label: 'Vision', href: '/vision' },
-    { label: 'Contact', href: '/contact' },
+    {
+      label: 'Services',
+      href: '/services',
+      subItems: [
+        {
+          label: 'Auditing & Taxation',
+          href: '/services?type=auditing',
+          description: 'Ansari & Co. — Income Tax, GST, ROC, Compliances & Planning',
+        },
+        {
+          label: 'Real Estate',
+          href: '/services?type=real-estate',
+          description: 'DSI Estates — Builders & Developers & Property Advisory',
+        },
+      ],
+    },
+    { label: 'Contact Us', href: '/contact' },
   ],
 };

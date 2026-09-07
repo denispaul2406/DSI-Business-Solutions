@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, Mail, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, ArrowUpRight, ChevronDown } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 import { COMPANY_CONFIG } from '@/lib/company-config';
 
@@ -14,6 +14,9 @@ interface NavbarProps {
 export default function Navbar({ onOpenEnquiry }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
+  const [mobileServicesExpanded, setMobileServicesExpanded] = useState(true);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
     setMobileMenuOpen(false);
+    setDesktopServicesOpen(false);
   }
 
   // Lock body scroll when mobile menu is open
@@ -41,6 +45,17 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
       document.body.style.overflow = 'unset';
     };
   }, [mobileMenuOpen]);
+
+  const handleMouseEnterServices = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setDesktopServicesOpen(true);
+  };
+
+  const handleMouseLeaveServices = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setDesktopServicesOpen(false);
+    }, 150);
+  };
 
   return (
     <>
@@ -64,7 +79,83 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               aria-label="Main Navigation"
             >
               {COMPANY_CONFIG.NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = pathname === link.href || (link.subItems && pathname.startsWith('/services'));
+                const hasSubItems = Boolean(link.subItems && link.subItems.length > 0);
+
+                if (hasSubItems) {
+                  return (
+                    <div
+                      key={link.href}
+                      className="relative"
+                      onMouseEnter={handleMouseEnterServices}
+                      onMouseLeave={handleMouseLeaveServices}
+                    >
+                      <div className="flex items-center">
+                        <Link
+                          href={link.href}
+                          className={`px-3 py-2 text-xs xl:text-sm font-medium tracking-wider uppercase transition-colors inline-flex items-center gap-1 relative ${
+                            isActive
+                              ? 'text-white font-semibold'
+                              : 'text-zinc-300 hover:text-white'
+                          }`}
+                        >
+                          <span>{link.label}</span>
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-200 text-[#c89f56] ${
+                              desktopServicesOpen ? 'rotate-180' : ''
+                            }`}
+                          />
+                          {isActive && (
+                            <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#c89f56]" />
+                          )}
+                        </Link>
+                      </div>
+
+                      {/* Dropdown Menu */}
+                      {desktopServicesOpen && (
+                        <div
+                          className="absolute top-full left-0 w-80 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                        >
+                          <div className="bg-[#121417] border border-zinc-800 shadow-2xl p-2 rounded-xs">
+                            <div className="px-3 py-1.5 border-b border-zinc-800/80 mb-1">
+                              <span className="text-[10px] font-mono uppercase tracking-widest text-[#c89f56]">
+                                Select Practice Division
+                              </span>
+                            </div>
+                            {link.subItems?.map((sub) => (
+                              <Link
+                                key={sub.href}
+                                href={sub.href}
+                                onClick={() => setDesktopServicesOpen(false)}
+                                className="block p-3 rounded-xs hover:bg-zinc-900/90 transition-colors group"
+                              >
+                                <div className="flex items-center justify-between text-xs font-semibold text-zinc-200 group-hover:text-white mb-1">
+                                  <span>{sub.label}</span>
+                                  <ArrowUpRight className="w-3 h-3 text-[#c89f56] opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </div>
+                                {sub.description && (
+                                  <p className="text-[11px] text-zinc-400 group-hover:text-zinc-300 leading-snug">
+                                    {sub.description}
+                                  </p>
+                                )}
+                              </Link>
+                            ))}
+                            <div className="mt-1 pt-2 border-t border-zinc-800/80 px-3 pb-1 flex items-center justify-between">
+                              <Link
+                                href="/services"
+                                onClick={() => setDesktopServicesOpen(false)}
+                                className="text-[11px] font-mono text-[#c89f56] hover:underline"
+                              >
+                                View Both Services Overview →
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.href}
@@ -163,6 +254,63 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
           <nav className="flex flex-col gap-1.5 mb-8" aria-label="Mobile Links">
             {COMPANY_CONFIG.NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
+              const hasSubItems = Boolean(link.subItems && link.subItems.length > 0);
+
+              if (hasSubItems) {
+                return (
+                  <div key={link.href} className="flex flex-col">
+                    <div
+                      className={`flex items-center justify-between py-3.5 px-3 min-h-[48px] text-base font-medium tracking-wide transition-colors ${
+                        pathname.startsWith('/services')
+                          ? 'bg-zinc-900 text-white font-semibold border-l-2 border-[#c89f56]'
+                          : 'text-zinc-300 hover:text-white hover:bg-zinc-900/50'
+                      }`}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex-1"
+                      >
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setMobileServicesExpanded(!mobileServicesExpanded)}
+                        className="p-1 text-zinc-400 hover:text-white"
+                        aria-label="Toggle sub-services"
+                      >
+                        <ChevronDown
+                          className={`w-4 h-4 text-[#c89f56] transition-transform ${
+                            mobileServicesExpanded ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                    </div>
+
+                    {mobileServicesExpanded && (
+                      <div className="pl-4 pr-2 py-2 flex flex-col gap-1 bg-zinc-950/60 border-l border-zinc-800 my-1">
+                        {link.subItems?.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="p-2.5 rounded-xs flex flex-col hover:bg-zinc-900/70"
+                          >
+                            <span className="text-sm font-medium text-[#c89f56] flex items-center justify-between">
+                              <span>↳ {sub.label}</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </span>
+                            <span className="text-[11px] text-zinc-400 mt-0.5">
+                              {sub.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.href}

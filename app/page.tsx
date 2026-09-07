@@ -3,10 +3,7 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import TrustIntro from '@/components/TrustIntro';
 import ServicesOverview from '@/components/ServicesOverview';
-import AccountantServicesSection from '@/components/AccountantServicesSection';
-import DsiEstatesSection from '@/components/DsiEstatesSection';
 import AboutSection from '@/components/AboutSection';
 import VisionSection from '@/components/VisionSection';
 import WhyDsiSection from '@/components/WhyDsiSection';
@@ -37,45 +34,32 @@ export default function HomePage() {
         {/* 2. Hero Section */}
         <Hero />
 
-        {/* 3. Trust / Introduction */}
-        <TrustIntro />
-
-        {/* 4. Services Overview */}
+        {/* 3. Services Overview (2 Types: Auditing & Real Estate) */}
         <ServicesOverview />
 
-        {/* 5. Accountant Services Preview / Grid */}
-        <AccountantServicesSection
-          onSelectServiceForEnquiry={handleSelectServiceForEnquiry}
-        />
-
-        {/* 6. DSI Estates Preview */}
-        <DsiEstatesSection
-          onSelectServiceForEnquiry={handleSelectServiceForEnquiry}
-        />
-
-        {/* 7. About DSI */}
+        {/* 4. About Us Preview */}
         <AboutSection />
 
-        {/* 8. Vision */}
+        {/* 5. Vision & Values */}
         <VisionSection />
 
-        {/* 9. Why DSI / Professional Approach */}
+        {/* 6. Why DSI Approach */}
         <WhyDsiSection />
 
-        {/* 10. Contact CTA Banner */}
+        {/* 7. Contact CTA Banner */}
         <ContactCtaBanner />
 
-        {/* 11. Contact Information & Contact Form */}
+        {/* 8. Contact Information & Contact Form */}
         <ContactSection preselectedService={selectedService} />
 
-        {/* 12. Google Maps / Location */}
+        {/* 9. Google Maps / Location */}
         <MapSection />
       </main>
 
-      {/* 13. Footer */}
+      {/* 10. Footer */}
       <Footer />
 
-      {/* 14. Persistent Mobile Bottom Action Bar */}
+      {/* 11. Persistent Mobile Bottom Action Bar */}
       <MobileActionPill />
     </div>
   );

@@ -72,12 +72,12 @@ export default function ServicesOverview() {
             </div>
 
             <div className="pt-4 sm:pt-6 border-t border-zinc-800/80 flex items-center justify-between">
-              <span className="text-xs font-mono text-zinc-500">10 Core Practice Areas</span>
+              <span className="text-xs font-mono text-zinc-500">10 Practice Areas</span>
               <Link
-                href="/accounting-services"
+                href="/services?type=auditing"
                 className="min-h-[44px] inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#c89f56] group-hover:text-white transition-colors py-2"
               >
-                <span>View Full Accounting Scope</span>
+                <span>Open Auditing Services</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </Link>
             </div>
@@ -124,12 +124,12 @@ export default function ServicesOverview() {
             </div>
 
             <div className="pt-4 sm:pt-6 border-t border-zinc-800/80 flex items-center justify-between">
-              <span className="text-xs font-mono text-zinc-500">4 Estate Pillars</span>
+              <span className="text-xs font-mono text-zinc-500">5 Practice Areas</span>
               <Link
-                href="/dsi-estates"
+                href="/services?type=real-estate"
                 className="min-h-[44px] inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#c89f56] group-hover:text-white transition-colors py-2"
               >
-                <span>Explore DSI Estates</span>
+                <span>Open Real Estate Services</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </Link>
             </div>
