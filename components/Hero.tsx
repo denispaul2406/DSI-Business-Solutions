@@ -2,18 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ArrowDown, ShieldCheck, FileCheck, Building2, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, ShieldCheck, Building2, Scale } from 'lucide-react';
 import { COMPANY_CONFIG } from '@/lib/company-config';
 
 export default function Hero() {
   return (
     <section
       id="hero-section"
-      className="relative bg-[#0f1114] text-white pt-24 sm:pt-32 lg:pt-40 pb-12 sm:pb-20 lg:pb-28 overflow-hidden border-b border-zinc-800"
+      className="relative bg-[#0f1114] text-white pt-28 sm:pt-36 lg:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-zinc-800"
     >
-      {/* Precision Structural Grid Background - Subtle Architectural Lines */}
+      {/* Precision Grid Background */}
       <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
           backgroundSize: '4rem 4rem',
@@ -21,7 +21,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Subtle radial illumination to establish depth */}
+      {/* Subtle radial illumination */}
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[500px] bg-gradient-to-b from-[#c89f56]/10 to-transparent blur-3xl pointer-events-none rounded-full"
         aria-hidden="true"
@@ -29,157 +29,152 @@ export default function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Typography & CTAs (60% on desktop) */}
+          {/* Left Column: Headline & Action */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900/90 border border-zinc-700/70 mb-5 sm:mb-8">
+            {/* MAS LLP Inspired Gold Pill Tag */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c89f56]/10 border border-[#c89f56]/30 mb-5 sm:mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c89f56] shrink-0" />
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.14em] sm:tracking-[0.18em] uppercase text-zinc-300">
-                Ansari & Co. • DSI Estates (Builders & Developers)
+              <span className="text-[11px] font-semibold tracking-widest uppercase text-[#c89f56]">
+                Ansari & Co. • DSI Estates • Legal Advisory
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight text-white leading-[1.16] mb-5 sm:mb-6">
-              Professional Solutions for Your{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-zinc-300">
-                Business, Tax & Property Needs.
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight text-white leading-[1.18] mb-4 sm:mb-5">
+              Precision in Auditing, Real Estate &{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#c89f56]">
+                Legal Consultancy.
               </span>
             </h1>
 
-            {/* Supporting Line */}
-            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed max-w-2xl mb-7 sm:mb-10">
-              Reliable Income Tax, GST, ROC statutory compliance, investments planning, and turnkey building development led by Amjad Ansari in Bangalore.
+            {/* Ultra-Concise Subtitle */}
+            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed max-w-2xl mb-8">
+              Integrated FDI business setup, Zoho & Tally accounting, full property management, title search, and civil, family, criminal & RERA legal counsel in Bangalore.
             </p>
 
-            {/* CTA Group */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8 sm:mb-12">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mb-10">
               <Link
                 href="/contact"
                 id="hero-primary-cta"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[48px] bg-[#c89f56] hover:bg-[#b88f46] text-[#0f1114] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98] focus:outline-hidden w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[48px] bg-[#c89f56] hover:bg-[#b88f46] text-[#0f1114] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98] focus:outline-hidden"
               >
-                <span>Get in Touch</span>
+                <span>Book Consultation</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </Link>
 
               <Link
                 href="#services"
                 id="hero-secondary-cta"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-700 text-xs sm:text-sm font-medium tracking-wider uppercase transition-colors active:scale-[0.98] focus:outline-hidden w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-700 text-xs sm:text-sm font-medium tracking-wider uppercase transition-colors active:scale-[0.98] focus:outline-hidden"
               >
-                <span>Explore Services</span>
+                <span>Explore Practice Areas</span>
                 <ArrowDown className="w-4 h-4 text-zinc-400" />
               </Link>
             </div>
 
-            {/* Core Capability Badges */}
-            <div className="pt-6 border-t border-zinc-800/80 w-full">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 text-left">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#c89f56] shrink-0" />
-                  <span className="text-xs text-zinc-300 font-medium">Income Tax & GST</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-[#c89f56] shrink-0" />
-                  <span className="text-xs text-zinc-300 font-medium">ROC & Compliances</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-[#c89f56] shrink-0" />
-                  <span className="text-xs text-zinc-300 font-medium">Builders & Developers</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#c89f56] shrink-0" />
-                  <span className="text-xs text-zinc-300 font-medium">Investments Planning</span>
-                </div>
+            {/* Highlights Bar */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-zinc-300 font-medium">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#c89f56] shrink-0" />
+                <span>Tax & FDI Setup</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-[#c89f56] shrink-0" />
+                <span>Property Management</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Scale className="w-4 h-4 text-[#c89f56] shrink-0" />
+                <span>Civil, Family & RERA Legal</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Sophisticated Abstract Financial Geometry & Architectural Precision Canvas */}
+          {/* Right Column: Architectural Matrix Box */}
           <div className="lg:col-span-5 relative w-full">
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none bg-gradient-to-br from-zinc-900/90 to-[#121417] p-5 sm:p-8 border border-zinc-800 shadow-2xl">
-              {/* Geometric Header Bar */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800">
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none bg-[#121417] p-5 sm:p-6 border border-zinc-800 shadow-2xl">
+              <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-zinc-800">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 bg-[#c89f56]" />
+                  <div className="w-2 h-2 bg-[#c89f56]" />
                   <span className="text-xs font-mono tracking-wider uppercase text-zinc-300">
-                    PRACTICE MATRIX
+                    PRACTICE TRIAD
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-zinc-400">BANGALORE • INDIA</span>
+                <span className="text-[11px] font-mono text-[#c89f56]">BANGALORE • HQ</span>
               </div>
 
-              {/* Architectural Vector Schematic */}
-              <div className="relative h-56 sm:h-72 w-full bg-[#0a0b0d] border border-zinc-800/80 p-3 sm:p-4 flex flex-col justify-between overflow-hidden">
-                {/* Precision Grid Matrix */}
-                <div
-                  className="absolute inset-0 opacity-20 pointer-events-none"
-                  style={{
-                    backgroundImage: `radial-gradient(#c89f56 1px, transparent 1px)`,
-                    backgroundSize: '20px 20px',
-                  }}
-                />
+              {/* Three Divisions Feature Cards */}
+              <div className="space-y-2.5">
+                <div className="p-3.5 bg-zinc-900/80 border border-zinc-800 hover:border-[#c89f56]/40 transition-colors">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[11px] font-mono text-[#c89f56]">DIVISION 01</span>
+                    <span className="text-[9px] px-2 py-0.5 bg-zinc-800 text-zinc-300 uppercase">Taxation & FDI</span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-white mb-0.5">
+                    Ansari & Co.
+                  </h3>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">
+                    India business expansion, Zoho/Tally accounting, GST, ROC and payroll compliance.
+                  </p>
+                </div>
 
-                {/* SVG Geometric Balance Diagram */}
-                <svg
-                  viewBox="0 0 400 240"
-                  className="w-full h-full"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Axis lines */}
-                  <line x1="20" y1="200" x2="380" y2="200" stroke="#27272a" strokeWidth="1.5" />
-                  <line x1="40" y1="20" x2="40" y2="220" stroke="#27272a" strokeWidth="1.5" />
-                  <line x1="200" y1="20" x2="200" y2="220" stroke="#27272a" strokeWidth="1" strokeDasharray="3 3" />
-                  
-                  {/* Architectural isometric structures representing dual divisions */}
-                  {/* Pillar 1: Accounting & Statutory Compliance */}
-                  <rect x="80" y="80" width="80" height="120" stroke="#52525b" strokeWidth="1" fill="#18181b" fillOpacity="0.4" />
-                  <rect x="90" y="100" width="60" height="100" stroke="#c89f56" strokeWidth="1" strokeDasharray="2 2" fill="none" />
-                  <line x1="80" y1="80" x2="110" y2="50" stroke="#71717a" strokeWidth="1" />
-                  <line x1="160" y1="80" x2="190" y2="50" stroke="#71717a" strokeWidth="1" />
-                  <line x1="110" y1="50" x2="190" y2="50" stroke="#71717a" strokeWidth="1" />
+                <div className="p-3.5 bg-zinc-900/80 border border-zinc-800 hover:border-[#c89f56]/40 transition-colors">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[11px] font-mono text-[#c89f56]">DIVISION 02</span>
+                    <span className="text-[9px] px-2 py-0.5 bg-zinc-800 text-zinc-300 uppercase">Real Estate</span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-white mb-0.5">
+                    DSI Estates
+                  </h3>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">
+                    Property management (leasing, rent, maintenance), building development & 30-yr title search.
+                  </p>
+                </div>
 
-                  {/* Pillar 2: DSI Estates & Deed Integrity */}
-                  <polygon points="240,200 240,70 340,70 340,200" stroke="#71717a" strokeWidth="1" fill="#18181b" fillOpacity="0.4" />
-                  <line x1="240" y1="70" x2="290" y2="35" stroke="#c89f56" strokeWidth="1.5" />
-                  <line x1="340" y1="70" x2="290" y2="35" stroke="#c89f56" strokeWidth="1.5" />
-                  <circle cx="290" cy="35" r="3" fill="#c89f56" />
-
-                  {/* Convergence lines depicting fiduciary trust */}
-                  <path d="M 120 140 Q 200 90 290 135" stroke="#c89f56" strokeWidth="1.5" strokeDasharray="4 3" />
-                  <circle cx="200" cy="112" r="4" fill="#ffffff" />
-                  <circle cx="200" cy="112" r="8" stroke="#c89f56" strokeWidth="1" opacity="0.6" />
-
-                  {/* Precision Coordinates & Labels */}
-                  <text x="65" y="225" fill="#a1a1aa" fontSize="9" fontFamily="monospace">DIV 01: ANSARI & CO.</text>
-                  <text x="240" y="225" fill="#a1a1aa" fontSize="9" fontFamily="monospace">DIV 02: DSI ESTATES</text>
-                </svg>
-
-                {/* Floating Status Marker */}
-                <div className="absolute bottom-3 left-3 bg-zinc-900/90 border border-zinc-700/80 px-2.5 py-1 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-300">
-                    Amjad Ansari • Bangalore
-                  </span>
+                <div className="p-3.5 bg-zinc-900/80 border border-zinc-800 hover:border-[#c89f56]/40 transition-colors">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[11px] font-mono text-[#c89f56]">DIVISION 03</span>
+                    <span className="text-[9px] px-2 py-0.5 bg-zinc-800 text-zinc-300 uppercase">Legal Advisory</span>
+                  </div>
+                  <h3 className="text-xs sm:text-sm font-semibold text-white mb-0.5">
+                    Legal Consultancy
+                  </h3>
+                  <p className="text-[11px] text-zinc-400 leading-relaxed">
+                    Commercial contracts, civil suits, family law, criminal defense & RERA tribunals.
+                  </p>
                 </div>
               </div>
 
-              {/* Dual Division Callout Cards */}
-              <div className="grid grid-cols-2 gap-3 mt-4">
-                <div className="p-3 bg-zinc-900 border border-zinc-800">
-                  <span className="text-[10px] font-mono text-[#c89f56] block mb-1">01 / PRACTICE</span>
-                  <p className="text-xs font-semibold text-white">Ansari & Co.</p>
-                  <p className="text-[11px] text-zinc-400 mt-0.5">Auditor & Tax Consultants</p>
-                </div>
-                <div className="p-3 bg-zinc-900 border border-zinc-800">
-                  <span className="text-[10px] font-mono text-[#c89f56] block mb-1">02 / PRACTICE</span>
-                  <p className="text-xs font-semibold text-white">DSI Estates</p>
-                  <p className="text-[11px] text-zinc-400 mt-0.5">Builders & Developers</p>
-                </div>
+              {/* Fast Contact Callout */}
+              <div className="mt-3.5 pt-3 border-t border-zinc-800 flex items-center justify-between text-xs font-mono">
+                <span className="text-zinc-400">Direct Partner Line:</span>
+                <a href={COMPANY_CONFIG.PHONE_TEL} className="text-[#c89f56] hover:underline font-semibold">
+                  {COMPANY_CONFIG.PHONE}
+                </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* MAS LLP Inspired Overlapping Stat Counter Bar */}
+        <div className="mt-14 sm:mt-18 pt-8 border-t border-zinc-800/80">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {COMPANY_CONFIG.STAT_METRICS.map((metric, index) => (
+              <div
+                key={index}
+                className="p-4 sm:p-5 bg-zinc-900/60 border border-zinc-800/80 hover:border-[#c89f56]/40 transition-all group"
+              >
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#c89f56] group-hover:text-white transition-colors mb-1">
+                  {metric.value}
+                </div>
+                <div className="text-xs sm:text-sm font-medium text-zinc-200 mb-0.5">
+                  {metric.label}
+                </div>
+                <div className="text-[11px] text-zinc-500 leading-tight">
+                  {metric.desc}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

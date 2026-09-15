@@ -23,10 +23,10 @@ export default function Footer() {
             <div className="lg:col-span-4 space-y-3.5 sm:space-y-4">
               <BrandLogo variant="dark" showSubtitle={false} />
               <p className="text-xs font-mono tracking-wider uppercase text-[#c89f56] pt-1">
-                {COMPANY_CONFIG.TAX_FIRM_NAME} • {COMPANY_CONFIG.ESTATES_FIRM_NAME}
+                Ansari & Co. • DSI Estates • Legal Advisory
               </p>
               <p className="text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-sm">
-                Led by Amjad Ansari in Bangalore. Professional practice providing Income Tax, GST, ROC statutory compliances, investment planning, alongside DSI Estates property development and deed conveyance.
+                Led by Amjad Ansari in Bangalore. Integrated professional practice providing FDI business setup, Zoho & Tally accounting, full property management, and civil, family, criminal & RERA legal advisory.
               </p>
               <div className="pt-1">
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 text-[10px] font-mono uppercase text-zinc-400">
@@ -55,40 +55,40 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Column 3: Services (3 cols) */}
+            {/* Column 3: Practice Areas (3 cols) */}
             <div className="lg:col-span-3 space-y-3 sm:space-y-4">
               <p className="text-xs font-mono font-semibold tracking-widest text-zinc-300 uppercase">
-                Practice Areas
+                Practice Disciplines
               </p>
               <ul className="space-y-2 text-xs sm:text-sm text-zinc-400">
                 <li>
                   <Link href="/accounting-services" className="inline-block py-1 hover:text-white transition-colors">
-                    Accounting & Bookkeeping
+                    FDI Setup & Company Formation
                   </Link>
                 </li>
                 <li>
                   <Link href="/accounting-services" className="inline-block py-1 hover:text-white transition-colors">
-                    Direct Tax & Income Tax
+                    Zoho & Tally Bookkeeping
                   </Link>
                 </li>
                 <li>
                   <Link href="/accounting-services" className="inline-block py-1 hover:text-white transition-colors">
-                    GST Filings & Reconciliation
+                    Payroll & Statutory Compliance
                   </Link>
                 </li>
                 <li>
-                  <Link href="/accounting-services" className="inline-block py-1 hover:text-white transition-colors">
-                    ROC & Secretarial Compliance
+                  <Link href="/dsi-estates" className="inline-block py-1 hover:text-white transition-colors">
+                    Property Management & Construction
                   </Link>
                 </li>
                 <li>
-                  <Link href="/accounting-services" className="inline-block py-1 hover:text-white transition-colors">
-                    Statutory Audit Preparation
+                  <Link href="/dsi-estates" className="inline-block py-1 hover:text-white transition-colors">
+                    30-Year Title Search & Deeds
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dsi-estates" className="inline-block py-1 text-[#c89f56] hover:underline font-medium transition-colors">
-                    DSI Estates (Property Services)
+                  <Link href="/legal-services" className="inline-block py-1 text-[#c89f56] hover:underline font-medium transition-colors">
+                    Legal Counsel (Civil, Family, RERA)
                   </Link>
                 </li>
               </ul>

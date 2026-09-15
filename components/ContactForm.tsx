@@ -335,19 +335,27 @@ export default function ContactForm({ preselectedService }: { preselectedService
             onChange={(e) => handleChange('serviceCategory', e.target.value)}
             className="w-full px-4 py-3 min-h-[48px] text-base sm:text-sm bg-white border border-zinc-300 text-zinc-900 focus:border-[#b3883b] focus:ring-1 focus:ring-[#b3883b] transition-colors focus:outline-hidden"
           >
-            <optgroup label="Accountant Services">
-              <option value="Accountant Services (General)">Accountant Services (General Inquiry)</option>
+            <optgroup label="Auditing, Tax & FDI (Ansari & Co.)">
+              <option value="Auditing & Tax Services (General)">Auditing & Tax Services (General Inquiry)</option>
               {COMPANY_CONFIG.ACCOUNTANT_SERVICES.map((s) => (
                 <option key={s.id} value={s.title}>
                   {s.title}
                 </option>
               ))}
             </optgroup>
-            <optgroup label="DSI Estates">
+            <optgroup label="DSI Estates & Property Management">
               <option value="DSI Estates (General)">DSI Estates (General Inquiry)</option>
               {COMPANY_CONFIG.DSI_ESTATES.map((e) => (
                 <option key={e.id} value={e.title}>
                   {e.title}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Legal Consultancy & Litigation Support">
+              <option value="Legal Consultancy (General)">Legal Consultancy (General Inquiry)</option>
+              {COMPANY_CONFIG.LEGAL_SERVICES.map((l) => (
+                <option key={l.id} value={l.title}>
+                  {l.title}
                 </option>
               ))}
             </optgroup>

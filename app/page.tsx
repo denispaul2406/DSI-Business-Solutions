@@ -35,7 +35,7 @@ export default function HomePage() {
         <Hero />
 
         {/* 3. Services Overview (2 Types: Auditing & Real Estate) */}
-        <ServicesOverview />
+        <ServicesOverview onSelectService={handleSelectServiceForEnquiry} />
 
         {/* 4. About Us Preview */}
         <AboutSection />

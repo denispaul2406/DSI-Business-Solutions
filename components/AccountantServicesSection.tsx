@@ -25,10 +25,10 @@ export default function AccountantServicesSection({
       return ['statutory-compliance', 'roc-compliance'].includes(svc.id);
     }
     if (filter === 'planning') {
-      return ['investments-planning', 'business-planning', 'financial-planning'].includes(svc.id);
+      return ['fdi-expansion', 'financial-planning'].includes(svc.id);
     }
     if (filter === 'accounting') {
-      return ['bookkeeping', 'payroll-management', 'bank-reconciliation'].includes(svc.id);
+      return ['bookkeeping', 'payroll-management'].includes(svc.id);
     }
     return true;
   });
@@ -64,11 +64,11 @@ export default function AccountantServicesSection({
               <Filter className="w-3.5 h-3.5" /> Filter:
             </span>
             {[
-              { id: 'all', label: 'All Services (10)' },
+              { id: 'all', label: `All Services (${COMPANY_CONFIG.ACCOUNTANT_SERVICES.length})` },
               { id: 'tax', label: 'Taxation & GST (2)' },
               { id: 'compliance', label: 'ROC & Compliance (2)' },
-              { id: 'planning', label: 'Financial & Planning (3)' },
-              { id: 'accounting', label: 'Accounting & Payroll (3)' },
+              { id: 'planning', label: 'FDI & Business Setup (2)' },
+              { id: 'accounting', label: 'Accounting & Payroll (2)' },
             ].map((tab) => (
               <button
                 key={tab.id}
